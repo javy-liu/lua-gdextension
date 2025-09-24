@@ -136,11 +136,11 @@ addons_files.extend(env.Command(
     Copy("addons/lua-gdextension/build", sproto_source),
 ))
 
-socket_source = Glob("lib/luasocket/src/*.lua")
-addons_files.extend(env.Command(
-    [f"addons/lua-gdextension/build/{f}" for f in socket_source],
-    socket_source,
-    Copy("addons/lua-gdextension/build", socket_source),
-))
+# socket_source = Glob("lib/luasocket/src/*.lua")
+# addons_files.extend(env.Command(
+#     [f"addons/lua-gdextension/build/{f}" for f in socket_source],
+#     socket_source,
+#     Copy("addons/lua-gdextension/build", socket_source),
+# ))
 Default(addons_files)
 Alias("addons_files", addons_files)
