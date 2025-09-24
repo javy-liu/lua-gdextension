@@ -16,3 +16,6 @@
 [submodule "lib/tree-sitter-lua"]
 	path = lib/tree-sitter-lua
 	url = https://github.com/tree-sitter-grammars/tree-sitter-lua.git
+[submodule "lib/luasocket"]
+	path = lib/luasocket
+	url = https://github.com/lunarmodules/luasocket.git

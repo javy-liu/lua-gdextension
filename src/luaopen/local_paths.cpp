@@ -31,14 +31,13 @@
 using namespace luagdextension;
 
 static int l_searchpath(lua_State *L) {
-	String name = luaL_checkstring(L, 1);
-	String path = luaL_checkstring(L, 2);
+	String name = String::utf8(luaL_checkstring(L, 1));
+	String path = String::utf8(luaL_checkstring(L, 2));
 	String sep = luaL_optstring(L, 3, ".");
 	String rep = luaL_optstring(L, 4, "/");
 	if (!sep.is_empty()) {
 		name = name.replace(sep, rep);
 	}
-	
 	PackedStringArray path_list = path.split(LUA_PATH_SEP, false);
 	PackedStringArray not_found_list;
 	for (const String& path_template : path_list) {
@@ -64,10 +63,9 @@ static int l_searchpath(lua_State *L) {
 
 static int l_loadfile(lua_State *L) {
 	sol::state_view state(L);
-	String filename = luaL_optstring(L, 1, "");
+	String filename = String::utf8(luaL_optstring(L, 1, ""));
 	String mode = luaL_optstring(L, 2, "bt");
 	Variant env = to_variant(sol::stack_object(L, 3));
-
 	sol::load_result result = load_fileaccess(state, filename, mode, Object::cast_to<LuaTable>(env));
 	if (result.valid()) {
 		result = sol::load_result();  // avoid popping result

@@ -29,7 +29,7 @@ compiledb = env.CompilationDatabase("compile_commands.json")
 env.Alias("compiledb", compiledb)
 
 # Generate sources
-python_bin = os.getenv("PYTHON_BIN", "python")
+python_bin = os.getenv("PYTHON_BIN", "python3")
 env.Command(
     [
         "src/generated/global_enums.hpp",
@@ -66,6 +66,7 @@ elif lua_runtime == "luajit":
     env.Tool("luajit", toolpath=["tools"])
 env.Tool("sol2", toolpath=["tools"])
 env.Tool("tree_sitter", toolpath=["tools"])
+env.Tool("sproto", toolpath=["tools"])
 
 # Build Lua GDExtension
 source_directories = [".", "luaopen", "utils", "script-language"]
@@ -73,6 +74,10 @@ sources = [
     Glob(f"{build_dir}/{directory}/*.cpp")
     for directory in source_directories
 ]
+
+# >>> 新增：收集并添加 sproto 源文件 <<<
+if "SPROTO_SOURCES" in env:
+    sources.append(env["SPROTO_SOURCES"])
 
 # Generate documentation source file
 if env["target"] in ["editor", "template_debug"]:
@@ -123,5 +128,19 @@ if lua_runtime == "luajit":
         jit_source,
         Copy("addons/lua-gdextension/build/jit", jit_source),
     ))
+
+sproto_source = Glob("lib/sproto/*.lua")
+addons_files.extend(env.Command(
+    [f"addons/lua-gdextension/build/{f}" for f in sproto_source],
+    sproto_source,
+    Copy("addons/lua-gdextension/build", sproto_source),
+))
+
+socket_source = Glob("lib/luasocket/src/*.lua")
+addons_files.extend(env.Command(
+    [f"addons/lua-gdextension/build/{f}" for f in socket_source],
+    socket_source,
+    Copy("addons/lua-gdextension/build", socket_source),
+))
 Default(addons_files)
 Alias("addons_files", addons_files)

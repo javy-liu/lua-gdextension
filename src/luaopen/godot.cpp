@@ -25,6 +25,9 @@
 #include "../utils/module_names.hpp"
 
 #include <sol/sol.hpp>
+//#include "luasocket.h"
+//#include "unix.h"
+//#include "mime.h"
 
 using namespace luagdextension;
 
@@ -37,6 +40,10 @@ extern "C" int luaopen_godot(lua_State *L) {
 	state.require(module_names::classes, &luaopen_godot_classes, false);
 	state.require(module_names::enums, &luaopen_godot_enums, false);
 	state.require(module_names::local_paths, &luaopen_godot_local_paths, false);
+	state.require("sproto.core", &luaopen_sproto_core, false);
+	//state.require("socket.unix", &luaopen_socket_unix, false);
+	//state.require("socket.core", &luaopen_socket_core, false);
+	//state.require("mime.core", &luaopen_mime_core, false);
 
 	return 0;
 }

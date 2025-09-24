@@ -33,7 +33,7 @@ int luaopen_godot_singleton_access(lua_State *L);
 int luaopen_godot_classes(lua_State *L);
 int luaopen_godot_enums(lua_State *L);
 int luaopen_godot_local_paths(lua_State *L);
-
+int luaopen_sproto_core(lua_State *L);
 }
 
 #endif  // __LUAOPEN_GODOT_HPP__
