@@ -326,7 +326,9 @@ static int lua_index(lua_State *L) {
 
 	if (key.get_type() == sol::type::string) {
 		if (LuaScriptInstance *instance = LuaScriptInstance::find_instance(self)) {
-			StringName key_name = key.as<StringName>();
+			std::string key_str = key.as<std::string>();
+			String godot_key = String::utf8(key_str.c_str(), key_str.size());
+			StringName key_name(godot_key);
 			if (instance->owner->has_method(key_name)) {
 				sol::stack::push(L, LuaScriptInstanceMethodBind(instance, key_name));
 			}

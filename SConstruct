@@ -68,6 +68,7 @@ env.Tool("sol2", toolpath=["tools"])
 env.Tool("tree_sitter", toolpath=["tools"])
 env.Tool("sproto", toolpath=["tools"])
 env.Tool("lpeg", toolpath=["tools"])
+# env.Tool("luac", toolpath=["tools"])
 
 # Build Lua GDExtension
 source_directories = [".", "luaopen", "utils", "script-language"]
