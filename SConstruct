@@ -29,7 +29,7 @@ compiledb = env.CompilationDatabase("compile_commands.json")
 env.Alias("compiledb", compiledb)
 
 # Generate sources
-python_bin = os.getenv("PYTHON_BIN", "python")
+python_bin = os.getenv("PYTHON_BIN", "python3")
 env.Command(
     [
         "src/generated/global_enums.hpp",
