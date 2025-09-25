@@ -3,22 +3,22 @@ def exists(env):
 
 
 def generate(env):
-    env.Append(CPPPATH="lib/sproto")
-    env.Append(CPPPATH="lib/lpeg")
+    env.Append(CPPPATH="src/sproto")
+    env.Append(CPPPATH="src/lpeg")
     # env.Append(CPPPATH="lib/luasocket/src")
 
 
     sproto_sources = [
 
-        "lib/lpeg/lpcap.c",
-        "lib/lpeg/lpcode.c",
-        "lib/lpeg/lpcset.c",
-        "lib/lpeg/lpprint.c",
-        "lib/lpeg/lptree.c",
-        "lib/lpeg/lpvm.c",
+        "src/lpeg/lpcap.c",
+        "src/lpeg/lpcode.c",
+        "src/lpeg/lpcset.c",
+        "src/lpeg/lpprint.c",
+        "src/lpeg/lptree.c",
+        "src/lpeg/lpvm.c",
 
-        "lib/sproto/sproto.c",
-        "lib/sproto/lsproto.c",   # Lua 绑定
+        "src/sproto/sproto.c",
+        "src/sproto/lsproto.c",   # Lua 绑定
 
         # "lib/luasocket/src/compat.c",
         # "lib/luasocket/src/auxiliar.c",

@@ -129,7 +129,7 @@ if lua_runtime == "luajit":
         Copy("addons/lua-gdextension/build/jit", jit_source),
     ))
 
-sproto_source = Glob("lib/sproto/*.lua")
+sproto_source = Glob("src/sproto/*.lua")
 addons_files.extend(env.Command(
     [f"addons/lua-gdextension/build/{f}" for f in sproto_source],
     sproto_source,
