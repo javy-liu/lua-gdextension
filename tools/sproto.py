@@ -3,49 +3,17 @@ def exists(env):
 
 
 def generate(env):
-    env.Append(CPPPATH="src/sproto")
-    env.Append(CPPPATH="src/lpeg")
-    # env.Append(CPPPATH="lib/luasocket/src")
+    build_dir = env["build_dir"]
 
-
-    sproto_sources = [
-
-        "src/lpeg/lpcap.c",
-        "src/lpeg/lpcode.c",
-        "src/lpeg/lpcset.c",
-        "src/lpeg/lpprint.c",
-        "src/lpeg/lptree.c",
-        "src/lpeg/lpvm.c",
-
-        "src/sproto/sproto.c",
-        "src/sproto/lsproto.c",   # Lua 绑定
-
-        # "lib/luasocket/src/compat.c",
-        # "lib/luasocket/src/auxiliar.c",
-        # "lib/luasocket/src/buffer.c",
-        # "lib/luasocket/src/except.c",
-        # "lib/luasocket/src/inet.c",
-        # "lib/luasocket/src/io.c",
-        # "lib/luasocket/src/timeout.c",
-        # "lib/luasocket/src/select.c",
-        # "lib/luasocket/src/tcp.c",
-        # "lib/luasocket/src/udp.c",
-        # "lib/luasocket/src/serial.c",
-        # "lib/luasocket/src/options.c",
-        #
-        # "lib/luasocket/src/luasocket.c",
-        #
-        # "lib/luasocket/src/usocket.c",
-        #
-        # "lib/luasocket/src/unix.c",
-        # "lib/luasocket/src/unixdgram.c",
-        # "lib/luasocket/src/unixstream.c",
-
-        # "lib/luasocket/src/mime.c",
-
-        # "lib/luasocket/src/wsocket.c",
-    ]
-    if "SPROTO_SOURCES" not in env:
-        env["SPROTO_SOURCES"] = []
-    env["SPROTO_SOURCES"].extend(sproto_sources)
+    env.Append(CPPPATH="luac/sproto")
+    sproto_env = env.Clone()
+    sproto_env.Append(CPPPATH="luac/sproto")
+    sproto = sproto_env.StaticLibrary(
+        target=f"{build_dir}/sproto",
+        source=[
+                "luac/sproto/sproto.c",
+                "luac/sproto/lsproto.c",   # Lua 绑定
+        ],
+    )
+    env.Append(LIBS=sproto)
 
