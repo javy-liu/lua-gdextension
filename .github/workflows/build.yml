@@ -18,7 +18,7 @@ jobs:
         target: [template_debug, template_release]
         arch: [x86_64, x86_32, arm64, arm32]
         platform: [linux, android]
-        lua-runtime: [lua, luajit]
+        lua-runtime: [luajit]
         include:
           - platform: linux
             arch: x86_32
