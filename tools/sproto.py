@@ -8,6 +8,14 @@ def generate(env):
 
 
     sproto_sources = [
+
+        "lib/lpeg/lpcap.c",
+        "lib/lpeg/lpcode.c",
+        "lib/lpeg/lpcset.c",
+        "lib/lpeg/lpprint.c",
+        "lib/lpeg/lptree.c",
+        "lib/lpeg/lpvm.c",
+
         "lib/sproto/sproto.c",
         "lib/sproto/lsproto.c",   # Lua 绑定
 
