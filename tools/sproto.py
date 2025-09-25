@@ -4,6 +4,7 @@ def exists(env):
 
 def generate(env):
     env.Append(CPPPATH="lib/sproto")
+    env.Append(CPPPATH="lib/lpeg")
     # env.Append(CPPPATH="lib/luasocket/src")
 
 
